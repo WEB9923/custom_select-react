@@ -50,7 +50,7 @@ export default function App(): JSX.Element {
   return (
     <>
       <div className={"flex justify-center h-screen w-full bg-gray-700"}>
-        <div className={"w-[350px]"}>
+        <div className={"w-[350px] select-none"}>
           <div
             onClick={showDropDownMenu}
             className={"flex items-center cursor-pointer h-10 px-2 justify-between w-full bg-gray-600 capitalize font-bold rounded-md mt-2 select-none text-gray-400"}
@@ -60,7 +60,7 @@ export default function App(): JSX.Element {
             {/*  ? <FaChevronDown size={22}/>*/}
             {/*  : <FaChevronUp size={22}/>*/}
             {/*}*/}
-            <FaChevronDown size={22} className={`${showDropDown && "rotate-180 duration-300"} duration-300`}/>
+            <FaChevronDown size={22} className={`${showDropDown && "rotate-180 duration-300"} duration-300 pointer-events-none`}/>
           </div>
           <AnimatePresence>
             {showDropDown &&
