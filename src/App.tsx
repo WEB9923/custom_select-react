@@ -40,7 +40,7 @@ export default function App(): JSX.Element {
   }
   const getCountries = async (): Promise<void> => {
     try {
-      const res: AxiosResponse = await axios.get("https://restcountries.com/v3.1/all?fields=name&flags");
+      const res: AxiosResponse = await axios.get("https://restcountries.com/v3.1/all?fields=name");
       if (res) { setCountries(res?.data) }
     } catch (err) {
       console.error(err);
