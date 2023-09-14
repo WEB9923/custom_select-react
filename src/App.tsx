@@ -15,6 +15,10 @@ interface ICountries {
     official: string
   }
 }
+enum animType {
+  SPRING = "spring",
+  TWEEN = "tween"
+}
 export default function App(): JSX.Element {
   const [countries, setCountries] = useState<ICountries[] | null>(null);
   const [selected, setSelected] = useState<string>("");
@@ -73,7 +77,7 @@ export default function App(): JSX.Element {
                   height: 0,
                 }} transition={{
                   duration: 0.35,
-                  type: "tween"
+                  type: `${animType.TWEEN}`,
                 }}
                 className={"w-full bg-gray-600 rounded-md mt-2 py-1 overflow-y-auto text-gray-400 relative"}
               >
