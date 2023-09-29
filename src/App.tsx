@@ -3,6 +3,7 @@ import axios, {AxiosResponse} from "axios";
 import {FaChevronDown, FaSearch} from "react-icons/fa";
 import * as React from "react";
 import {AnimatePresence, motion} from "framer-motion";
+const FETCH_URL: string = import.meta.env.VITE_FETCH_URL;
 interface ICountries {
   name: {
     common: string,
@@ -24,7 +25,6 @@ export default function App(): JSX.Element {
   const [selected, setSelected] = useState<string>("");
   const [showDropDown, setShowDropDown] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>("");
-  //fn
   const change = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setInputValue(e.target.value.toLowerCase());
   }
@@ -33,24 +33,22 @@ export default function App(): JSX.Element {
     setShowDropDown(false);
   }
   const truncate = (str: string, len: number): string => {
-    return str.length > len ? str.slice(0, len) + "..." : str;
+    return str.length > len ? str.substring(0, len) + "..." : str;
   }
   const showDropDownMenu = (): void => {
     setShowDropDown(!showDropDown);
   }
   const getCountries = async (): Promise<void> => {
     try {
-      const res: AxiosResponse = await axios.get("https://restcountries.com/v3.1/all?fields=name");
+      const res: AxiosResponse = await axios.get(FETCH_URL);
       if (res) { setCountries(res?.data) }
     } catch (err) {
       console.error(err);
     }
   }
-  //effect
   useEffect(() => {
     getCountries();
   }, []);
-
   return (
     <>
       <div className={"flex justify-center h-screen w-full bg-gray-700"}>
@@ -60,10 +58,6 @@ export default function App(): JSX.Element {
             className={"flex items-center cursor-pointer h-10 px-2 justify-between w-full bg-gray-600 capitalize font-bold rounded-md mt-2 select-none text-gray-400"}
           >
             {selected ? truncate(selected, 30) : "select country"}
-            {/*{!showDropDown*/}
-            {/*  ? <FaChevronDown size={22}/>*/}
-            {/*  : <FaChevronUp size={22}/>*/}
-            {/*}*/}
             <FaChevronDown size={22} className={`${showDropDown && "rotate-180 duration-300"} duration-300 pointer-events-none`}/>
           </div>
           <AnimatePresence>
@@ -77,7 +71,7 @@ export default function App(): JSX.Element {
                   height: 0,
                 }} transition={{
                   duration: 0.35,
-                  type: `${animType.TWEEN}`,
+                  type: `${animType.TWEEN}`
                 }}
                 className={"w-full bg-gray-600 rounded-md mt-2 py-1 overflow-y-auto text-gray-400 relative"}
               >
