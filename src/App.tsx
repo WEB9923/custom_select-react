@@ -55,10 +55,28 @@ export default function App(): JSX.Element {
         <div className={"w-[350px] select-none"}>
           <div
             onClick={showDropDownMenu}
-            className={"flex items-center cursor-pointer h-10 px-2 justify-between w-full bg-gray-600 capitalize font-bold rounded-md mt-2 select-none text-gray-400"}
+            className={`
+              flex 
+              items-center 
+              cursor-pointer 
+              h-10 
+              px-2 
+              justify-between 
+              w-full 
+              bg-gray-600 
+              capitalize 
+              font-bold 
+              rounded-md 
+              mt-2 
+              select-none 
+              text-gray-400
+            `}
           >
             {selected ? truncate(selected, 30) : "select country"}
-            <FaChevronDown size={22} className={`${showDropDown && "rotate-180 duration-300"} duration-300 pointer-events-none`}/>
+            <FaChevronDown
+              size={22}
+              className={`${showDropDown && "rotate-180 duration-300"} duration-300 pointer-events-none`}
+            />
           </div>
           <AnimatePresence>
             {showDropDown &&
@@ -73,16 +91,43 @@ export default function App(): JSX.Element {
                   duration: 0.35,
                   type: `${animType.TWEEN}`
                 }}
-                className={"w-full bg-gray-600 rounded-md mt-2 py-1 overflow-y-auto text-gray-400 relative"}
+                className={`
+                  w-full 
+                  bg-gray-600 
+                  rounded-md 
+                  mt-2 
+                  py-1 
+                  overflow-y-auto 
+                  text-gray-400 
+                  relative
+                `}
               >
                 <div className="px-1 relative">
-                  <FaSearch size={18} className={"absolute left-2.5 top-1/2 transform -translate-y-1/2"}/>
+                  <FaSearch size={18} className={`
+                    absolute 
+                    left-2.5 
+                    top-1/2 
+                    transform 
+                    -translate-y-1/2
+                  `}/>
                   <input
                     type="text"
                     placeholder={"search..."}
                     value={inputValue}
                     onChange={change}
-                    className={"w-full h-10 rounded-md bg-gray-600 transition pl-8 duration-200 border-none outline-none px-2 focus:bg-gray-700"}
+                    className={`
+                      w-full
+                      h-10
+                      rounded-md
+                      bg-gray-600
+                      transition
+                      pl-8
+                      duration-200
+                      border-none
+                      outline-none
+                      px-2
+                      focus:bg-gray-700
+                    `}
                   />
                 </div>
                 {countries?.map((item) => (
@@ -97,8 +142,21 @@ export default function App(): JSX.Element {
                       ${item.name.common.toLowerCase().startsWith(inputValue) 
                         ? "block" 
                         : "hidden"
-                      } py-2 bg-gray-600 my-0.5 cursor-pointer font-medium hover:bg-gray-800 px-2 relative hover:before:w-1 hover:before:h-full hover:before:absolute hover:before:bg-gray-500 hover:before:left-0 hover:before:top-0`
-                    }
+                      } 
+                      py-2 
+                      bg-gray-600 
+                      my-0.5 
+                      cursor-pointer 
+                      font-medium 
+                      hover:bg-gray-800
+                      px-2 relative
+                      hover:before:w-1 
+                      hover:before:h-full 
+                      hover:before:absolute 
+                      hover:before:bg-gray-500 
+                      hover:before:left-0 
+                      hover:before:top-0
+                    `}
                   >
                     {item.name.common}
                   </li>
