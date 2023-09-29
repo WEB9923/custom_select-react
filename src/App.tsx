@@ -16,10 +16,7 @@ interface ICountries {
     official: string
   }
 }
-enum animType {
-  SPRING = "spring",
-  TWEEN = "tween"
-}
+enum animType { SPRING = "spring", TWEEN = "tween" }
 export default function App(): JSX.Element {
   const [countries, setCountries] = useState<ICountries[] | null>(null);
   const [selected, setSelected] = useState<string>("");
